@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentoria Tsutawaru Nihongo — Prof. Jin Takahashi</title>
+<meta name="description" content="Para brasileiros que vivem no Japão há anos e querem destravar promoção, autonomia e respeito. Aplicação privada para a mentoria do Prof. Jin.">
+<meta property="og:title" content="Mentoria Tsutawaru Nihongo — Prof. Jin Takahashi">
+<meta property="og:description" content="O japonês que ninguém te ensinou — e que funciona de verdade no Japão.">
+<meta property="og:image" content="images/jin-open-graph.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Inter+Tight:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0F2940;--navy-dark:#0A1D30;--navy-deep:#071525;--navy-light:#1F4068;--gold:#C8A560;--gold-light:#E5C88E;--cream:#F5EFE2;--ink:#1A1A1A;--gray:#6B6B6B;--gray-lt:#A8A8A8;--red:#B4503A}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter Tight',sans-serif;background:var(--navy-deep);color:var(--cream);overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s}
+#cursor-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(200,165,96,.45);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,opacity .2s}
+
+/* GRAIN OVERLAY */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.028;pointer-events:none;z-index:9990;animation:gr 6s steps(8) infinite}
+@keyframes gr{0%,100%{transform:translate(0,0)}12%{transform:translate(-2%,-2%)}25%{transform:translate(2%,1%)}37%{transform:translate(-1%,3%)}50%{transform:translate(3%,-1%)}62%{transform:translate(-2%,2%)}75%{transform:translate(1%,-2%)}87%{transform:translate(-3%,1%)}}
+
+/* TARJA */
+.tarja{background:var(--red);padding:11px 20px;text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.06em;color:#fff;position:relative;overflow:hidden;z-index:200}
+.tarja::before{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);animation:sheen 4s linear infinite}
+@keyframes sheen{to{left:200%}}
+
+/* HEADER */
+.header{position:fixed;top:0;left:0;right:0;z-index:150;padding:0 64px;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent}
+.header.scrolled{background:rgba(7,21,37,.88);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-color:rgba(200,165,96,.1)}
+.header-logo img{height:34px;width:auto;mix-blend-mode:screen}
+.nav{display:flex;gap:36px;list-style:none}
+.nav a{font-size:10.5px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,239,226,.5);transition:color .2s}
+.nav a:hover{color:var(--gold)}
+.btn-hdr{font-family:'Inter Tight',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);border:1.5px solid rgba(200,165,96,.45);padding:10px 26px;background:transparent;cursor:none;transition:all .25s;position:relative;overflow:hidden}
+.btn-hdr::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.btn-hdr:hover::before{transform:none}
+.btn-hdr:hover{color:var(--navy)}
+.btn-hdr span{position:relative;z-index:1}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;background:var(--navy);position:relative;overflow:hidden;padding-top:72px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 10% 110%,rgba(200,165,96,.07) 0%,transparent 55%),radial-gradient(ellipse 55% 55% at 88% 8%,rgba(31,64,104,.85) 0%,transparent 50%)}
+.kanji-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.kanji{position:absolute;font-family:serif;color:rgba(200,165,96,.04);font-weight:700;line-height:1;user-select:none;animation:floatK linear infinite}
+@keyframes floatK{from{transform:translateY(110vh) rotate(var(--r))}to{transform:translateY(-15vh) rotate(var(--r))}}
+.hero-inner{flex:1;display:grid;grid-template-columns:1fr 440px;align-items:flex-end;max-width:1280px;margin:0 auto;padding:80px 64px 0;width:100%;position:relative;z-index:2}
+.hero-left{padding-bottom:80px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10.5px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;opacity:0;animation:up .65s .15s forwards}
+.hero-eyebrow::before{content:'';display:block;width:30px;height:1px;background:var(--gold)}
+.hero-h1{font-family:'Fraunces',serif;font-size:clamp(40px,5.2vw,68px);font-weight:600;line-height:1.04;color:var(--cream);margin-bottom:28px;opacity:0;animation:up .65s .35s forwards}
+.hero-h1 em{font-style:italic;color:var(--gold);font-weight:500}
+.hero-p{font-size:clamp(15px,1.4vw,18px);line-height:1.7;color:rgba(245,239,226,.72);max-width:520px;margin-bottom:36px;font-weight:300;opacity:0;animation:up .65s .5s forwards}
+.hero-creds{font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:44px;opacity:0;animation:up .65s .62s forwards}
+.hero-creds span{opacity:.35;margin:0 10px}
+.hero-btns{display:flex;align-items:center;gap:22px;flex-wrap:wrap;opacity:0;animation:up .65s .75s forwards}
+.btn-gold{display:inline-block;font-family:'Inter Tight',sans-serif;font-size:13.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:19px 52px;position:relative;overflow:hidden;cursor:none;border:none}
+.btn-gold::before{content:'';position:absolute;inset:0;background:var(--gold-light);transform:translateX(-101%);transition:transform .35s cubic-bezier(.4,0,.2,1)}
+.btn-gold:hover::before{transform:none}
+.btn-gold:hover{transform:translateY(-2px)}
+.btn-gold span{position:relative;z-index:1}
+.hero-note{font-size:12px;color:var(--gray-lt);font-style:italic}
+.hero-stats{display:flex;border-top:1px solid rgba(200,165,96,.14);margin-top:48px}
+.h-stat{flex:1;padding:26px 32px;opacity:0;animation:up .65s calc(.8s + var(--i)*.1s) forwards}
+.h-stat:first-child{padding-left:0}
+.h-stat:not(:last-child){border-right:1px solid rgba(200,165,96,.1)}
+.h-stat-n{font-family:'Fraunces',serif;font-size:clamp(28px,3vw,42px);font-weight:700;color:var(--gold);line-height:1;margin-bottom:6px}
+.h-stat-l{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gray-lt)}
+.hero-right{position:relative;align-self:flex-end;opacity:0;animation:heroR .85s .25s forwards}
+.hero-right img{width:100%;max-height:82vh;object-fit:contain;object-position:bottom;mix-blend-mode:screen;filter:brightness(1.06)}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes heroR{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:none}}
+
+/* MARQUEE */
+.marquee{background:var(--gold);overflow:hidden;padding:13px 0}
+.marquee-t{display:flex;width:max-content;animation:mq 28s linear infinite}
+.mq-item{font-family:'Fraunces',serif;font-size:13.5px;font-style:italic;color:var(--navy);padding:0 40px;display:flex;align-items:center;gap:0;white-space:nowrap}
+.mq-item::after{content:'◆';margin-left:40px;font-style:normal;font-size:7px;opacity:.4}
+@keyframes mq{from{transform:none}to{transform:translateX(-50%)}}
+
+/* SECTION COMMONS */
+section{padding:116px 64px}
+.si{max-width:1200px;margin:0 auto}
+.sl{font-size:10.5px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.sl::before{content:'';width:28px;height:1px;background:var(--gold);opacity:.6}
+.st{font-family:'Fraunces',serif;font-size:clamp(28px,3.8vw,48px);font-weight:600;line-height:1.08;margin-bottom:18px}
+.ss{font-size:16.5px;line-height:1.72;opacity:.6;max-width:640px;font-weight:300}
+
+/* REVEAL */
+.rx{opacity:0;transform:translateY(30px);transition:opacity .72s cubic-bezier(.4,0,.2,1),transform .72s cubic-bezier(.4,0,.2,1)}
+.rx.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}
+
+/* DIAGNÓSTICO */
+.diag{background:var(--cream);color:var(--ink)}
+.diag .sl{color:var(--navy);opacity:.5}
+.diag .sl::before{background:var(--navy)}
+.diag .st{color:var(--navy)}
+.diag .ss{color:var(--gray)}
+.diag-head{margin-bottom:60px}
+.cards-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(15,41,64,.08)}
+.card{background:#fff;padding:36px 30px;position:relative;overflow:hidden;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transform-origin:bottom;transition:transform .32s cubic-bezier(.4,0,.2,1)}
+.card:hover{transform:translateY(-4px)}
+.card:hover::before{transform:scaleY(1)}
+.cn{font-family:'Fraunces',serif;font-size:10px;color:rgba(200,165,96,.35);font-weight:700;letter-spacing:.2em;margin-bottom:14px}
+.ct{font-family:'Fraunces',serif;font-size:17px;font-weight:600;color:var(--navy);line-height:1.3;margin-bottom:10px}
+.cd{font-size:13px;color:var(--gray);line-height:1.65}
+
+/* VIRADA */
+.virada{background:var(--navy)}
+.vg{display:grid;grid-template-columns:1fr 1.35fr;gap:96px;align-items:center}
+.vline{width:1px;height:72px;background:linear-gradient(to bottom,transparent,rgba(200,165,96,.4),transparent);margin:28px 0}
+.vt{font-family:'Fraunces',serif;font-size:clamp(36px,5vw,64px);font-weight:600;line-height:1.02}
+.vtxt{font-size:15.5px;line-height:1.88;color:rgba(245,239,226,.78);font-weight:300}
+.vtxt p{margin-bottom:18px}
+.vtxt strong{color:var(--cream);font-weight:600}
+.vtxt em{color:var(--gold);font-style:italic}
+.vassin{font-family:'Fraunces',serif;font-size:17px;font-style:italic;color:var(--gold);padding-top:22px;border-top:1px solid rgba(200,165,96,.16);margin-top:6px}
+
+/* SOBRE */
+.sobre{background:var(--navy-dark);overflow:hidden}
+.sobre-g{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:center}
+.sobre-img-wrap{position:relative}
+.sobre-img-wrap::before{content:'';position:absolute;inset:-1px;background:linear-gradient(140deg,rgba(200,165,96,.18),transparent 65%);z-index:2;pointer-events:none;border-radius:4px}
+.sobre-img{border-radius:4px;overflow:hidden;background:var(--navy-light);position:relative}
+.sobre-img img{width:100%;display:block;mix-blend-mode:screen;filter:brightness(1.06)}
+.sname{font-family:'Fraunces',serif;font-size:clamp(34px,3.6vw,52px);font-weight:600;line-height:1.06;margin-bottom:26px}
+.sbio p{font-size:15px;line-height:1.85;color:rgba(245,239,226,.75);font-weight:300;margin-bottom:14px}
+.snums{display:flex;border-top:1px solid rgba(200,165,96,.14);margin-top:36px;padding-top:34px}
+.snum{flex:1}
+.snum:not(:last-child){padding-right:24px;border-right:1px solid rgba(200,165,96,.1);margin-right:24px}
+.snv{font-family:'Fraunces',serif;font-size:38px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:5px}
+.snl{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-lt);line-height:1.45}
+
+/* MENTORIA */
+.mentoria{background:var(--navy-deep)}
+.mentoria .sl,.mentoria .st,.mentoria .ss{text-align:center}
+.mentoria .sl{justify-content:center}
+.mentoria .sl::before{display:none}
+.m-intro{font-size:16.5px;line-height:1.78;color:rgba(245,239,226,.65);text-align:center;max-width:660px;margin:0 auto 64px;font-weight:300}
+.mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(200,165,96,.06)}
+.mc{background:var(--navy-light);padding:44px 36px;position:relative;overflow:hidden;transition:background .3s}
+.mc:hover{background:#244d7a}
+.mc::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .35s}
+.mc:hover::after{opacity:1}
+.mc-bg-n{position:absolute;top:14px;right:18px;font-family:'Fraunces',serif;font-size:52px;font-weight:700;color:rgba(200,165,96,.08);line-height:1;user-select:none}
+.mc-label{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.mc-title{font-family:'Fraunces',serif;font-size:22px;font-weight:600;color:var(--cream);margin-bottom:12px;line-height:1.2}
+.mc-text{font-size:14px;line-height:1.72;color:rgba(245,239,226,.62);font-weight:300}
+.mquote{font-family:'Fraunces',serif;font-size:clamp(19px,2.2vw,27px);font-style:italic;font-weight:500;color:var(--gold);text-align:center;margin:68px auto 0;max-width:660px;line-height:1.42;opacity:.88}
+
+/* PARA QUEM */
+.paraquem{background:var(--navy)}
+.pqt{font-family:'Fraunces',serif;font-size:clamp(30px,4vw,52px);font-weight:600;text-align:center;margin-bottom:60px;line-height:1.06}
+.pq-g{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pq-c{padding:50px 46px;border-radius:2px}
+.pq-c.sim{background:var(--navy-light);border-top:2px solid var(--gold)}
+.pq-c.nao{background:#152333;border-top:2px solid #1e3347}
+.pq-head{font-size:10px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;margin-bottom:30px}
+.pq-c.sim .pq-head{color:var(--gold)}
+.pq-c.nao .pq-head{color:#3a5060}
+.pqi{display:flex;gap:14px;margin-bottom:16px;font-size:14px;line-height:1.58;font-weight:300}
+.pqi-i{flex-shrink:0;margin-top:2px;font-size:11px;font-weight:700}
+.pq-c.sim .pqi{color:rgba(245,239,226,.82)}
+.pq-c.nao .pqi{color:#3a5060}
+.pq-c.sim .pqi-i{color:var(--gold)}
+.pq-c.nao .pqi-i{color:#1e3347}
+
+/* PROCESSO */
+.processo{background:var(--cream);color:var(--ink)}
+.processo .sl{color:rgba(15,41,64,.5)}
+.processo .sl::before{background:var(--navy)}
+.processo .st{color:var(--navy)}
+.processo .ss{color:var(--gray)}
+.proc-head{margin-bottom:68px}
+.proc-g{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.proc-g::before{content:'';position:absolute;top:27px;left:6%;right:6%;height:1px;background:linear-gradient(90deg,transparent,rgba(200,165,96,.25) 15%,rgba(200,165,96,.25) 85%,transparent)}
+.proc-step{padding-right:24px}
+.proc-step:last-child{padding-right:0}
+.proc-dot{width:54px;height:54px;border-radius:50%;background:#fff;border:1.5px solid rgba(200,165,96,.3);display:flex;align-items:center;justify-content:center;margin-bottom:22px;font-family:'Fraunces',serif;font-size:17px;font-weight:700;color:var(--gold);position:relative;z-index:1;transition:background .28s,border-color .28s,color .28s}
+.proc-step:hover .proc-dot{background:var(--gold);border-color:var(--gold);color:var(--navy)}
+.proc-title{font-family:'Fraunces',serif;font-size:17.5px;font-weight:600;color:var(--navy);margin-bottom:8px;line-height:1.25}
+.proc-text{font-size:13px;color:var(--gray);line-height:1.72;font-weight:300}
+.aviso{background:#fff9e8;border:1.5px solid rgba(200,165,96,.38);padding:30px 36px;margin-top:68px;position:relative;overflow:hidden}
+.aviso::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
+.aviso p{font-size:13.5px;color:var(--ink);line-height:1.78}
+.aviso strong{font-weight:700;color:var(--navy)}
+
+/* FORM */
+.form-s{background:var(--navy-dark)}
+.form-s .sl,.form-s .st,.form-s .ss{text-align:center}
+.form-s .sl{justify-content:center}
+.form-s .sl::before{display:none}
+.form-s .ss{margin:0 auto}
+.fbox{background:var(--cream);border-radius:3px;padding:60px;max-width:840px;margin:52px auto 0;color:var(--ink)}
+.fr{display:grid;gap:18px;margin-bottom:18px}
+.fr.c2{grid-template-columns:1fr 1fr}
+.fr.c1{grid-template-columns:1fr}
+.fg{display:flex;flex-direction:column;gap:7px}
+.fl{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--navy)}
+.fi,.fsel,.fta{font-family:'Inter Tight',sans-serif;font-size:14px;color:var(--ink);background:#fff;border:1.5px solid #ddd4c4;padding:13px 16px;transition:border-color .2s,box-shadow .2s;width:100%;outline:none;border-radius:2px}
+.fi:focus,.fsel:focus,.fta:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,165,96,.1)}
+.fta{resize:vertical;min-height:106px;line-height:1.62}
+.fsel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 5 5-5' stroke='%230F2940' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer}
+.frad-g{display:flex;flex-direction:column;gap:9px}
+.frad{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--ink);cursor:pointer}
+.frad input{accent-color:var(--gold);width:15px;height:15px;cursor:pointer}
+.fsub-wrap{margin-top:32px}
+.fsub{width:100%;font-family:'Inter Tight',sans-serif;font-size:14.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--navy);color:var(--gold);padding:22px;border:none;cursor:pointer;position:relative;overflow:hidden;transition:transform .2s}
+.fsub::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .38s cubic-bezier(.4,0,.2,1)}
+.fsub:hover::before{transform:none}
+.fsub:hover .fsub-t{color:var(--navy)}
+.fsub-t{position:relative;z-index:1;transition:color .28s}
+.fnote{font-size:11.5px;color:var(--gray);text-align:center;margin-top:14px;font-style:italic;line-height:1.62}
+
+/* CTA */
+.cta{background:var(--navy-deep);text-align:center;padding:136px 64px}
+.cta .sl{justify-content:center}
+.cta .sl::before{display:none}
+.cta .st{text-align:center;max-width:660px;margin:0 auto 22px}
+.cta-p{font-size:17px;line-height:1.82;color:rgba(245,239,226,.6);max-width:560px;margin:0 auto 48px;font-weight:300}
+.cta-p p{margin-bottom:14px}
+
+/* FOOTER */
+footer{background:#000;padding:60px 64px}
+.ftg{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:60px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.05)}
+.ftlogo img{height:28px;mix-blend-mode:screen;margin-bottom:12px}
+.fttag{font-size:12px;color:#444;font-style:italic}
+.ftct{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:.65}
+.ftl{list-style:none}
+.ftl li{margin-bottom:9px}
+.ftl a{font-size:12.5px;color:#4a4a4a;transition:color .2s}
+.ftl a:hover{color:var(--gold)}
+.ftb{text-align:center;padding-top:28px;font-size:11px;color:#2a2a2a;max-width:1200px;margin:0 auto}
+
+/* MOBILE */
+@media(max-width:960px){
+  section{padding:80px 24px}
+  .header{padding:0 24px}
+  .nav{display:none}
+  .hero-inner{grid-template-columns:1fr;padding:56px 24px 0}
+  .hero-right{display:none}
+  .hero-left{padding-bottom:56px}
+  .cards-g,.mcards{grid-template-columns:1fr}
+  .vg,.sobre-g{grid-template-columns:1fr;gap:44px}
+  .pq-g{grid-template-columns:1fr}
+  .proc-g{grid-template-columns:1fr 1fr;gap:36px}
+  .proc-g::before{display:none}
+  .ftg{grid-template-columns:1fr;gap:32px}
+  footer{padding:44px 24px}
+  .fbox{padding:28px 20px}
+  .fr.c2{grid-template-columns:1fr}
+  .cta{padding:90px 24px}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<div class="tarja">⚠&nbsp;&nbsp;ESTA É UMA PÁGINA DE APLICAÇÃO PRIVADA. Não continue rolando se você não está realmente decidido a parar de viver como visitante no Japão.</div>
+
+<header class="header" id="hdr">
+  <div class="header-logo"><img src="images/Logo-oficial-branco.png" alt="Fale Japonês"></div>
+  <nav><ul class="nav"><li><a href="#sobre">O Professor</a></li><li><a href="#mentoria">A Mentoria</a></li><li><a href="#processo">Como Funciona</a></li></ul></nav>
+  <a href="#aplicacao" class="btn-hdr"><span>Aplicar Agora</span></a>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="kanji-bg" id="kb"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Mentoria Tsutawaru Nihongo</div>
+      <h1 class="hero-h1">O japonês que ninguém te ensinou — e que <em>funciona</em> de verdade no Japão.</h1>
+      <p class="hero-p">Para brasileiros que vivem no Japão há anos, ainda dependem dos outros para resolver a própria vida — e estão prontos para mudar isso.</p>
+      <div class="hero-creds">35+ Anos no Japão<span>◆</span>25+ Anos Ensinando<span>◆</span>1.000+ Alunos</div>
+      <div class="hero-btns">
+        <a href="#aplicacao" class="btn-gold"><span>Iniciar Aplicação</span></a>
+        <span class="hero-note">Avaliado pessoalmente pelo Prof. Jin · Vagas limitadas</span>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat" style="--i:0"><div class="h-stat-n">35+</div><div class="h-stat-l">Anos no Japão</div></div>
+        <div class="h-stat" style="--i:1"><div class="h-stat-n">25+</div><div class="h-stat-l">Anos Ensinando</div></div>
+        <div class="h-stat" style="--i:2"><div class="h-stat-n">1.000+</div><div class="h-stat-l">Alunos Formados</div></div>
+      </div>
+    </div>
+    <div class="hero-right"><img src="images/jin-hero-desktop.png" alt="Prof. Jin Takahashi" id="himg"></div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-t">
+    <div class="mq-item">Tsutawaru Nihongo</div><div class="mq-item">O Japonês que Comunica de Verdade</div><div class="mq-item">伝わる日本語</div><div class="mq-item">35 Anos de Metodologia</div><div class="mq-item">Keigo Aplicado</div><div class="mq-item">Espírito de Samurai</div><div class="mq-item">Prof. Jin Takahashi</div>
+    <div class="mq-item">Tsutawaru Nihongo</div><div class="mq-item">O Japonês que Comunica de Verdade</div><div class="mq-item">伝わる日本語</div><div class="mq-item">35 Anos de Metodologia</div><div class="mq-item">Keigo Aplicado</div><div class="mq-item">Espírito de Samurai</div><div class="mq-item">Prof. Jin Takahashi</div>
+  </div>
+</div>
+
+<section class="diag">
+  <div class="si">
+    <div class="diag-head">
+      <div class="sl rx">Você se reconhece nisso?</div>
+      <h2 class="st rx d1">Você mora no Japão há mais de 5 anos.<br>Mas ainda vive como visitante.</h2>
+      <p class="ss rx d2">Se algum desses cenários acontece com você, esta mentoria pode ser o caminho:</p>
+    </div>
+    <div class="cards-g">
+      <div class="card rx d1"><div class="cn">01</div><div class="ct">Seu filho de 8 anos faz a sua reunião escolar.</div><div class="cd">Você depende da criança para resolver questões básicas no dia a dia.</div></div>
+      <div class="card rx d2"><div class="cn">02</div><div class="ct">Você está 5+ anos na mesma empresa, sem promoção.</div><div class="cd">O teto não é técnico. É linguístico. E você sabe disso.</div></div>
+      <div class="card rx d3"><div class="cn">03</div><div class="ct">Google Translate é seu intérprete no médico.</div><div class="cd">Cada conversa importante depende de uma muleta digital.</div></div>
+      <div class="card rx d1"><div class="cn">04</div><div class="ct">Reuniões em japonês são tortura silenciosa.</div><div class="cd">Você entende boa parte, mas não consegue falar com autoridade.</div></div>
+      <div class="card rx d2"><div class="cn">05</div><div class="ct">Seu chefe nunca te coloca pra atender cliente.</div><div class="cd">Não é falta de competência. É falta de keigo aplicado.</div></div>
+      <div class="card rx d3"><div class="cn">06</div><div class="ct">Seus amigos no Japão são quase todos brasileiros.</div><div class="cd">A bolha é confortável. Mas é uma prisão invisível.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="virada">
+  <div class="si">
+    <div class="vg">
+      <div class="rx">
+        <div class="sl">A Virada</div>
+        <h2 class="vt">O problema nunca foi você.</h2>
+        <div class="vline"></div>
+      </div>
+      <div class="rx d2">
+        <div class="vtxt">
+          <p>Você tentou app. Tentou curso barato. Tentou estudar sozinho. Tentou aula com professor que <strong>nunca pisou no Japão</strong>.</p>
+          <p>Nada disso funcionou porque tudo isso ensina japonês de turista — e você não é turista. <strong>Você mora aqui.</strong></p>
+          <p>O que você precisa é <em>metodologia</em> — não método. Metodologia é como se ensina alguém de verdade a <strong>viver no idioma</strong>.</p>
+          <p>Eu vivo no Japão há mais de 35 anos. Ensino japonês há mais de 25. E desenvolvi a única metodologia que prepara o brasileiro pra realmente trabalhar, crescer e empreender no Japão. Se chama <em>Tsutawaru Nihongo</em>.</p>
+        </div>
+        <div class="vassin">— Prof. Jin Takahashi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="si">
+    <div class="sobre-g">
+      <div class="sobre-img-wrap rx">
+        <div class="sobre-img"><img src="images/jin-sobre-o-professor.png" alt="Prof. Jin Takahashi"></div>
+      </div>
+      <div class="rx d2">
+        <div class="sl" style="margin-bottom:14px">O Professor</div>
+        <h2 class="sname">Jin Takahashi</h2>
+        <div class="sbio">
+          <p>Descendente japonês. Mais de 35 anos vivendo no Japão. Mais de 25 anos ensinando — em escolas de idiomas, escolas técnicas, treinamentos corporativos e educação especial.</p>
+          <p>Bacharelado em Letras com Licenciatura em Inglês pela Universidade da Filadélfia. Professor, intérprete e tradutor.</p>
+          <p>Mais de 1.000 brasileiros já passaram pela sua metodologia. Hoje, lidera a comunidade Espírito de Samurai — e abre, pela primeira vez, vagas para mentorados individuais.</p>
+        </div>
+        <div class="snums">
+          <div class="snum"><div class="snv">35+</div><div class="snl">Anos no Japão</div></div>
+          <div class="snum"><div class="snv">25+</div><div class="snl">Anos Ensinando</div></div>
+          <div class="snum"><div class="snv">1.000+</div><div class="snl">Alunos Formados</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mentoria" id="mentoria">
+  <div class="si">
+    <div class="sl rx">A Mentoria</div>
+    <h2 class="st rx d1">A Mentoria Tsutawaru Nihongo</h2>
+    <p class="m-intro rx d2">Para quem decidiu parar de sobreviver no Japão e começar a viver de verdade. Um grupo seleto de mentorados com acompanhamento direto do Prof. Jin durante um ano inteiro.</p>
+    <div class="mcards">
+      <div class="mc rx d1"><div class="mc-bg-n">01</div><div class="mc-label">Módulo I</div><div class="mc-title">Keigo Aplicado</div><div class="mc-text">A linguagem honorífica que destrava promoção, autoridade e respeito no ambiente profissional japonês.</div></div>
+      <div class="mc rx d2"><div class="mc-bg-n">02</div><div class="mc-label">Módulo II</div><div class="mc-title">Situações Reais</div><div class="mc-text">Hospital, prefeitura, escola, banco, contratos, reuniões. O japonês que você precisa hoje — não o de livro didático.</div></div>
+      <div class="mc rx d3"><div class="mc-bg-n">03</div><div class="mc-label">Módulo III</div><div class="mc-title">Acompanhamento Pessoal</div><div class="mc-text">Encontros ao vivo quinzenais com o Jin. Correção. Direção. Comunidade ativa de Samurais. Você não estuda sozinho.</div></div>
+    </div>
+    <p class="mquote rx">"Aqui não se ensina japonês.<br>Aqui se constrói autonomia."</p>
+  </div>
+</section>
+
+<section class="paraquem">
+  <div class="si">
+    <h2 class="pqt rx">Esta mentoria não é para todos.</h2>
+    <div class="pq-g">
+      <div class="pq-c sim rx d1">
+        <div class="pq-head">◆&nbsp;&nbsp;É para você se...</div>
+        <div class="pqi"><span class="pqi-i">◆</span><span>Você mora no Japão há mais de 5 anos</span></div>
+        <div class="pqi"><span class="pqi-i">◆</span><span>Tem renda estável e está disposto a investir em crescimento</span></div>
+        <div class="pqi"><span class="pqi-i">◆</span><span>Já estudou japonês antes (idealmente N5 ou equivalente)</span></div>
+        <div class="pqi"><span class="pqi-i">◆</span><span>Quer crescer no trabalho, empreender ou virar intérprete</span></div>
+        <div class="pqi"><span class="pqi-i">◆</span><span>Está cansado de depender dos outros pra resolver a própria vida</span></div>
+        <div class="pqi"><span class="pqi-i">◆</span><span>Aceita acompanhamento próximo, com cobrança e prática real</span></div>
+      </div>
+      <div class="pq-c nao rx d2">
+        <div class="pq-head">✕&nbsp;&nbsp;Não é para você se...</div>
+        <div class="pqi"><span class="pqi-i">—</span><span>Você está só "curioso" sobre o Japão</span></div>
+        <div class="pqi"><span class="pqi-i">—</span><span>Quer aprender japonês como hobby, sem urgência</span></div>
+        <div class="pqi"><span class="pqi-i">—</span><span>Está procurando o curso mais barato do mercado</span></div>
+        <div class="pqi"><span class="pqi-i">—</span><span>Não tem disciplina pra estudar 30 min por dia</span></div>
+        <div class="pqi"><span class="pqi-i">—</span><span>Acabou de chegar no Japão e ainda está se estabilizando</span></div>
+        <div class="pqi"><span class="pqi-i">—</span><span>Quer fórmula mágica sem comprometimento</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="processo" id="processo">
+  <div class="si">
+    <div class="proc-head">
+      <div class="sl rx">Como Funciona</div>
+      <h2 class="st rx d1">O caminho até a mentoria.</h2>
+      <p class="ss rx d2">A mentoria não está aberta para inscrição direta. É preciso passar por um filtro.</p>
+    </div>
+    <div class="proc-g">
+      <div class="proc-step rx d1"><div class="proc-dot">01</div><div class="proc-title">Preencha a aplicação</div><div class="proc-text">Algumas perguntas para o Jin entender seu perfil, sua dor e seu nível atual.</div></div>
+      <div class="proc-step rx d2"><div class="proc-dot">02</div><div class="proc-title">Pague a taxa de ¥2.000</div><div class="proc-text">Não cobre a reunião — garante o compromisso de quem realmente vai comparecer.</div></div>
+      <div class="proc-step rx d3"><div class="proc-dot">03</div><div class="proc-title">Agende pelo Calendly</div><div class="proc-text">No horário que funcione pra você. Reunião 1-a-1 com o Jin pelo Zoom.</div></div>
+      <div class="proc-step rx d4"><div class="proc-dot">04</div><div class="proc-title">Conversa com o Jin</div><div class="proc-text">Se for o perfil, recebe convite. Se não, o Jin te orienta o caminho certo.</div></div>
+    </div>
+    <div class="aviso rx">
+      <p><strong>⚠ Por que existe a taxa de ¥2.000?</strong> Para evitar reuniões com curiosos. O Jin atende pessoalmente cada candidato — e isso só faz sentido com gente comprometida. A aplicação não garante vaga — selecionamos cada mentorado individualmente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="form-s" id="aplicacao">
+  <div class="si">
+    <div class="sl rx">Aplicação para a Mentoria</div>
+    <h2 class="st rx d1">Sua aplicação vai diretamente pra mim.</h2>
+    <p class="ss rx d2">Eu, Jin, leio cada aplicação pessoalmente. Quanto mais clara a sua resposta, melhor para eu entender se podemos seguir juntos.</p>
+    <div class="fbox rx">
+      <form id="frm" onsubmit="doSub(event)">
+        <div class="fr c1"><div class="fg"><label class="fl" for="n">Nome completo</label><input class="fi" id="n" type="text" placeholder="Como devo te chamar?" required></div></div>
+        <div class="fr c2">
+          <div class="fg"><label class="fl" for="em">E-mail</label><input class="fi" id="em" type="email" placeholder="exemplo@email.com" required></div>
+          <div class="fg"><label class="fl" for="wa">WhatsApp com DDI</label><input class="fi" id="wa" type="tel" placeholder="+81 90-XXXX-XXXX" required></div>
+        </div>
+        <div class="fr c2">
+          <div class="fg"><label class="fl" for="loc">Onde você mora hoje?</label><select class="fsel" id="loc" required><option value="">Selecione...</option><option>Japão</option><option>Brasil</option><option>Outro país</option></select></div>
+          <div class="fg"><label class="fl" for="tmp">Há quanto tempo mora no Japão?</label><select class="fsel" id="tmp" required><option value="">Selecione...</option><option>Menos de 1 ano</option><option>1 a 3 anos</option><option>3 a 5 anos</option><option>5 a 10 anos</option><option>Mais de 10 anos</option><option>Não moro no Japão</option></select></div>
+        </div>
+        <div class="fr c1"><div class="fg"><label class="fl" for="niv">Nível atual de japonês</label><select class="fsel" id="niv" required><option value="">Selecione...</option><option>Nunca estudei</option><option>Básico (hiragana/katakana)</option><option>N5 ou equivalente</option><option>N4 ou equivalente</option><option>N3 ou equivalente</option><option>N2 ou equivalente</option><option>N1 ou superior</option></select></div></div>
+        <div class="fr c1"><div class="fg"><label class="fl" for="dor">Qual a sua maior dor hoje com o japonês?</label><textarea class="fta" id="dor" rows="4" placeholder="Conta pro Jin com suas palavras. Não precisa ser bonito." required minlength="50"></textarea></div></div>
+        <div class="fr c1"><div class="fg"><label class="fl" for="pq">Por que você quer entrar na Mentoria agora?</label><textarea class="fta" id="pq" rows="4" placeholder="O que mudou na sua vida que te trouxe até aqui?" required minlength="50"></textarea></div></div>
+        <div class="fr c1">
+          <div class="fg">
+            <label class="fl">Disponibilidade financeira para uma mentoria de alto valor?</label>
+            <div class="frad-g">
+              <label class="frad"><input type="radio" name="fin" value="sim" required> Sim, estou preparado</label>
+              <label class="frad"><input type="radio" name="fin" value="cond"> Sim, mas preciso entender as condições</label>
+              <label class="frad"><input type="radio" name="fin" value="nao"> Ainda não, mas estou organizando</label>
+            </div>
+          </div>
+        </div>
+        <div class="fr c1"><div class="fg"><label class="fl" for="orig">Como você conheceu o Jin?</label><select class="fsel" id="orig" required><option value="">Selecione...</option><option>Instagram</option><option>YouTube</option><option>TikTok</option><option>Indicação de aluno</option><option>Grupo de WhatsApp</option><option>Outro</option></select></div></div>
+        <div class="fsub-wrap">
+          <button type="submit" class="fsub"><span class="fsub-t">Enviar Aplicação e Pagar Taxa de ¥2.000 →</span></button>
+          <p class="fnote">Após o envio você será redirecionado para o pagamento de ¥2.000 via Stripe.<br>Apenas após o pagamento você receberá acesso ao Calendly do Prof. Jin.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="si">
+    <div class="sl rx">Próximo Passo</div>
+    <h2 class="st rx d1">Sua próxima reunião pode ser com o Jin.</h2>
+    <div class="cta-p rx d2">
+      <p>Se você chegou até aqui, você sabe que algo precisa mudar. A mentoria não é a primeira tentativa. Mas pode ser a última.</p>
+      <p>Não é sobre aprender mais palavras. É sobre finalmente viver no Japão como adulto.</p>
+    </div>
+    <a href="#aplicacao" class="btn-gold rx d3"><span>Preencher Aplicação Agora</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="ftg">
+    <div><div class="ftlogo"><img src="images/Logo-oficial-branco.png" alt="Fale Japonês"></div><p class="fttag">O japonês que muda vida.</p></div>
+    <div><div class="ftct">Links</div><ul class="ftl"><li><a href="#sobre">Sobre o Jin</a></li><li><a href="#mentoria">A Mentoria</a></li><li><a href="#aplicacao">Aplicação</a></li><li><a href="mailto:suporte@falejaponesjin.com.br">Contato</a></li></ul></div>
+    <div><div class="ftct">Redes Sociais</div><ul class="ftl"><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">TikTok</a></li></ul></div>
+  </div>
+  <div class="ftb">Fale Japonês — Prof. Jin Takahashi — Tóquio, Japão — © 2026. Todos os direitos reservados.</div>
+</footer>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+let mx=0,my=0,lx=0,ly=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){lx+=(mx-lx)*.11;ly+=(my-ly)*.11;ring.style.left=lx+'px';ring.style.top=ly+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,.card,.mc,.pq-c,.proc-step').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px';ring.style.width='52px';ring.style.height='52px';ring.style.opacity='.35'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px';ring.style.opacity='1'});
+});
+if('ontouchstart' in window){cur.style.display='none';ring.style.display='none';document.body.style.cursor='auto'}
+
+// HEADER SCROLL
+window.addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('scrolled',scrollY>60),{passive:true});
+
+// KANJI BG
+const chars='伝わる日本語習学一生道';
+const kb=document.getElementById('kb');
+for(let i=0;i<16;i++){
+  const k=document.createElement('div');
+  k.className='kanji';
+  k.textContent=chars[i%chars.length];
+  const sz=90+Math.random()*180;
+  k.style.cssText=`position:absolute;font-family:serif;color:rgba(200,165,96,.04);font-weight:700;font-size:${sz}px;line-height:1;user-select:none;left:${Math.random()*100}%;--r:${(Math.random()-.5)*22}deg;animation:floatK ${25+Math.random()*28}s linear ${-Math.random()*40}s infinite`;
+  kb.appendChild(k);
+}
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(ee=>ee.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.07,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.rx').forEach(el=>obs.observe(el));
+
+// PARALLAX
+window.addEventListener('scroll',()=>{
+  const img=document.getElementById('himg');
+  if(img)img.style.transform=`translateY(${scrollY*.11}px)`;
+},{passive:true});
+
+// FORM
+function doSub(e){
+  e.preventDefault();
+  const b=e.target.querySelector('.fsub');
+  b.querySelector('.fsub-t').textContent='Redirecionando para pagamento...';
+  b.disabled=true;
+  setTimeout(()=>location.href='https://buy.stripe.com/SEU_LINK_AQUI',900);
+}
+</script>
+</body>
+</html>
